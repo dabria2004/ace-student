@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment Detail</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <style>
+    .assignmentHeader {
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      font-size: larger;
+    }
+
+    .cstm-height-card {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .fileIcon {
+      font-size: 1.5rem;
+      color: #0275d8;
+    }
+
+    .claendar {
+      color: #0275d8;
+    }
+  </style>
+
+  <body>
+    <!--header start-->
+    <!-- Start Header Section -->
+  <header>
+    <!-- start nav -->
+    <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top" style="height: 70px;">
+      <a href="index.html" class="navbar-brand" style="margin-left: 60px;">
+        <img src="./img/ace-logo.png" alt="brand" width="170px" />
+        <span class="mx-2 text-muted text-capitalize">learning portal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#narbar-menu"
+        aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="narbar-menu">
+        <ul class="navbar-nav mx-3">
+          <li class="nav-item mx-3">
+            <div class="dropdown">
+                <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                 Exam
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item p-2" href="midterm-form.html">Mid Term</a></li>
+                  <li><a class="dropdown-item p-2" href="assignmentDetail.html">Final</a></li>
+                </ul>
+              </div>
+            <!-- <a class="nav-link text-capitalize fw-bold" href="">exam</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-capitalize fw-bold" href="assignmentPage.html">assignment</a>
+          </li>
+        </ul>
+        <div class="ms-3">
+          <a href="profile.html" id="ttone"><img src="./img/avatar-1.jpg" class="rounded-circle me-4" alt="login" width="40px"></a>
+        </div>
+      </div>
+    </nav>
+    <!-- end nav -->
+  </header>
+  <!-- End Header Section -->
+    <!--header end-->
+  
+    <div class="container paddings">
+      <center class="mt-4">
+        <div class="col-md-8 col-sm-4" style="width: 75%">
+          <div class="d-flex justify-content-start mt-4 ps-3 pt-2">
+            <i class="fa-solid fa-file fileIcon px-2 mt-2"></i>
+            <p class="text-center assignmentHeader pt-2">
+              Student Management Assignment with MyBatis
+            </p>
+          </div>
+          <div class="d-flex">
+            <p class="text-muted px-4">Teacher who posted the assignment</p>
+            <i class="fa-solid fa-calendar-days claendar"></i>
+            &nbsp;&nbsp;
+            <p class="text-muted">Jul 8</p>
+          </div>
+          <div class="d-flex align-items-left ps-4">
+            <p class="text-muted">80/100 Points</p>
+          </div>
+        </div>
+      </center>
+
+      <!-- Show uploaded file -->
+      <!-- <center> -->
+      <div class="row justify-content-center" id="app">
+        <div class="col-md-6 col-sm-12">
+          <!-- style="margin-left: 10rem; max-width: 540px; height: auto; border-color: black;" -->
+          <div
+            class="card mb-3 mt-3 mb-3 d-flex justify-content-start border-2"
+          >
+            <div class="row">
+              <!--flex-nowrap-->
+              <div class="col-md-4 col-sm-4">
+                <i
+                  class="fa-solid fa-cloud-arrow-up"
+                  style="font-size: 80px"
+                  v-if="!assignmentFile"
+                  @click="upload()"
+                ></i>
+                <img
+                  src="https://i0.wp.com/www.techquintal.com/wp-content/uploads/2020/10/ZIP-File.jpg?fit=1024%2C576&ssl=1"
+                  class="card-img cstm-height-card"
+                  alt="..."
+                  v-if="assignmentFile"
+                />
+                <form action="#" class="d-none">
+                  <input
+                    type="file"
+                    class="d-none"
+                    ref="uploadBtn"
+                    @change="changeImg()"
+                  />
+                </form>
+              </div>
+              <div class="col-md-8 col-sm-7" v-if="assignmentFile">
+                <div class="card-body">
+                  <p class="card-text">Student.zip</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a
+                href="#"
+                class="btn btn-danger"
+                v-if="!show"
+                @click="unsubmit()"
+                >Unsubmit</a
+              >
+              <a href="#" class="btn btn-success" v-if="show" @click="submit()"
+                >Submit</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </center> -->
+      <!-- End of Show uploaded file -->
+
+      <hr />
+
+      <!-- Comment section -->
+      <section style="background-color: white">
+        <div class="container py-5">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+              <h3 class="text-muted">Class comments</h3>
+              <div class="card border-0">
+                <!--card-->
+                <div class="card-body">
+                  <div class="d-flex flex-start align-items-center">
+                    <img
+                      class="rounded-circle shadow-1-strong me-3"
+                      src="https://i.pinimg.com/originals/3d/66/78/3d667893c5788613ff3590ca218a9cb2.jpg"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="fw-bold text-primary mb-1">Phyu Phyu Thin</h6>
+                      <p class="text-muted small mb-0">Jan 2020</p>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-4 pb-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip consequat.
+                  </p>
+                </div>
+                <!--card-->
+
+                <!--card-->
+                <div class="card-body">
+                  <div class="d-flex flex-start align-items-center">
+                    <img
+                      class="rounded-circle shadow-1-strong me-3"
+                      src="https://i.quotev.com/lr6j7dfrjd5a.jpg"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="fw-bold text-primary mb-1">May Zwei</h6>
+                      <p class="text-muted small mb-0">Jan 2020</p>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-4 pb-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip consequat.
+                  </p>
+                </div>
+                <!--card-->
+
+                <!--card-->
+                <div class="card-body">
+                  <div class="d-flex flex-start align-items-center">
+                    <img
+                      class="rounded-circle shadow-1-strong me-3"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfG26lCCZXstVwEXL7T8wbWvgl4omGGU5W9QMnki7Ues5r24_TXc8RsOm2MvhCSjWaADA&usqp=CAU"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="fw-bold text-primary mb-1">Phyu Phyu Thin</h6>
+                      <p class="text-muted small mb-0">Jan 2020</p>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-4 pb-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip consequat.
+                  </p>
+                </div>
+                <!--card-->
+
+                <!--card-->
+                <div class="card-body">
+                  <div class="d-flex flex-start align-items-center">
+                    <img
+                      class="rounded-circle shadow-1-strong me-3"
+                      src="https://cdn.vectorstock.com/i/1000x1000/44/12/default-avatar-photo-placeholder-icon-grey-vector-38594412.webp"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="fw-bold text-primary mb-1">May Zwei</h6>
+                      <p class="text-muted small mb-0">Jan 2020</p>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-4 pb-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip consequat.
+                  </p>
+                </div>
+                <!--card-->
+
+                <!--card-->
+                <div class="card-body">
+                  <div class="d-flex flex-start align-items-center">
+                    <img
+                      class="rounded-circle shadow-1-strong me-3"
+                      src="https://64.media.tumblr.com/d1133af521baf01b6898025f4339c3b0/866a7d8faf880207-5f/s640x960/3cef0d45e826da7df75c8ba57f519bcf162ccefb.png"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="fw-bold text-primary mb-1">Phyu Phyu Thin</h6>
+                      <p class="text-muted small mb-0">Jan 2020</p>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-4 pb-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip consequat.
+                  </p>
+                </div>
+                <!--card-->
+
+                <div
+                  class="card-footer py-3 border-0"
+                  style="background-color: #f8f9fa"
+                >
+                  <div class="d-flex flex-start w-100">
+                    <img
+                      class="rounded-circle shadow-1-strong me-3"
+                      src="https://i.pinimg.com/474x/eb/d2/2e/ebd22e59d2788984176c91d24e2f855d.jpg"
+                      alt="avatar"
+                      width="40"
+                      height="40"
+                    />
+                    <div class="form-outline w-100">
+                      <textarea
+                        class="form-control"
+                        id="textAreaExample"
+                        rows="4"
+                        style="background: #fff"
+                      ></textarea>
+                      <label class="form-label" for="textAreaExample"
+                        >Message</label
+                      >
+                    </div>
+                  </div>
+                  <div class="float-end mt-2 pt-1">
+                    <button type="button" class="btn btn-primary btn-sm">
+                      Post comment
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End of Comment section -->
+    </div>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          show: true,
+          assignmentFile: false,
+        },
+        methods: {
+          upload() {
+            this.$refs["uploadBtn"].click();
+          },
+          submit() {
+            this.show = false;
+          },
+          unsubmit() {
+            this.show = true;
+            this.assignmentFile = false;
+          },
+          changeImg() {
+            this.assignmentFile = true;
+          },
+        },
+      });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  </body>
+</html>
